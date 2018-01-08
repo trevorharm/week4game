@@ -4,12 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crystal Game</title>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <title>Crystal Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 </head>
 <body>
+    <div class = "jumbotron">
+        <h1 class="text-center">The Crystal Game</h1>
+        <h3 class="text-center">Using the Crystals, match the number generated.</h3>
+        <h3 class="text-center">Don't Go Over!</h3>
+    </div>
+
+<div class="container">
+    <div class="row">
+        <!-- Recording numbers -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">Tallies</h2>
+            </div>
+            <div class="panel-body">
+                <div class="text-center col-lg-3"><h3>Number to Reach</h3></div>
+                <div class="text-center col-lg-3"><h3>Current Total</h3></div>
+                <div class="text-center col-lg-3"><h3>Wins</h3></div>
+                <div classs="text-center col-lg-3"><h3>Losses</h3></div>
+                <h1 id="randomNumber" class="col-lg-3"></h1>
+                <h1 id="currentScore" class="col-lg-3"></h1>
+                <h1 id="wins" class="col-lg-3"></h1>
+                <h1 id="losses" class="col-lg-3"></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Crystal buttons -->
+        <div id="buttons" class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="text-center">Crystal Buttons</h3>
+                </div>
+                <div class="panel-body">
+                    <button id="buttonOne" class="col-lg-3 btn btn-primary"><img src="assets/images/button1.jpg"></button>
+                    <button id="buttonTwo" class="col-lg-3 btn btn-primary"><img src="assets/images/button2.jpg"></button>
+                    <button id="buttonThree" class="col-lg-3 btn btn-primary"><img src="assets/images/button3.jpg"></button>
+                    <button id="buttonFour" class="col-lg-3 btn btn-primary"><img src="assets/images/button4.jpg"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5"></div>
+            <div class="col-lg-2">
+                <button id="reset" class="btn btn-danger"><h1>Reset Game</h1></button>
+            </div>
+        <div class="col-lg-5"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+// vars to record data
+var targetNumber;
+var currentGuess;
+var buttonOneNumber;
+var buttonTwoNumber;
+var buttonThreeNumber;
+var buttonFourNumber;
+var wins;
+var losses;
+
+function initializeGame(){
+// Zero out all variables
+    var currentGuess="";
+    var targetNumber="";
+    var wins="";
+    var losses="";
+
+// clear out HTML
+$("#randomNumber, #currentScore, #wins, #losses").empty();
+// generate random number to reach
+    var targetNumber = Math.floor(Math.random() * 100) + 1;
+// Write random number to div
+    $("#randomNumber").text(targetNumber);
+}
+
     
+    
+// Reset Game Button
+$("#reset").on("click", function(){
+    initializeGame();
+});
+   
+// Call initialize Game
+initializeGame();   
+});
+
+</script>
+
 </body>
 </html>
