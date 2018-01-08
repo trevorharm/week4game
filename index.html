@@ -32,8 +32,8 @@
                 <div classs="text-center col-lg-3"><h3>Losses</h3></div>
                 <h1 id="randomNumber" class="col-lg-3"></h1>
                 <h1 id="currentScore" class="col-lg-3"></h1>
-                <h1 id="wins" class="col-lg-3"></h1>
-                <h1 id="losses" class="col-lg-3"></h1>
+                <h1 id="winTotals" class="col-lg-3"></h1>
+                <h1 id="lossTotals" class="col-lg-3"></h1>
             </div>
         </div>
     </div>
@@ -84,18 +84,39 @@ function initializeGame(){
 // clear out HTML
 $("#randomNumber, #currentScore, #wins, #losses").empty();
 // generate random number to reach
-    var targetNumber = Math.floor(Math.random() * 100) + 1;
+    var targetNumber = Math.floor(Math.random() * 120) + 19;
 // Write random number to div
     $("#randomNumber").text(targetNumber);
-}
+// create random values and assign to crystal buttons
+    $("#buttonOne").val() = Math.floor(Math.random() * 12) + 1;
+    $("#buttonTwo").val() = Math.floor(Math.random() * 12) + 1;
+    $("#buttonThree").val() = Math.floor(Math.random() * 12) + 1;
+    $("#buttonFour").val() = Math.floor(Math.random() * 12) + 1;
+};
+// Push value when buttonOne is clicked
+$("#buttonOne").on("click", function(){
+currentGuess += $("#buttonOne").val();
+$("#currentScore").text(currentGuess);
+});
+// Push value when buttonTwo is clicked
+$("#buttonTwo").on("click", function(){
 
-    
-    
+});
 // Reset Game Button
 $("#reset").on("click", function(){
     initializeGame();
 });
-   
+// Compare to see if user won 
+// function checkWin(){
+//     if (currentGuess) > (targetNumber)
+
+//     $("#lossTotals").text(losses)
+// }
+// else {
+//     (currentGuess) = (targetNumber)
+// }
+
+// };
 // Call initialize Game
 initializeGame();   
 });
