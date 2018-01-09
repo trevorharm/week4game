@@ -76,31 +76,60 @@ var losses;
 
 function initializeGame(){
 // Zero out all variables
-    var currentGuess="";
-    var targetNumber="";
-    var wins="";
-    var losses="";
+    currentGuess=0;
+    var randomValues = [];
+    wins=0;
+    losses=0;
+    var currentValue;
 
 // clear out HTML
 $("#randomNumber, #currentScore, #wins, #losses").empty();
 // generate random number to reach
     var targetNumber = Math.floor(Math.random() * 120) + 19;
-// Write random number to div
+// write random number to div
     $("#randomNumber").text(targetNumber);
-// create random values and assign to crystal buttons
-    $("#buttonOne").val() = Math.floor(Math.random() * 12) + 1;
-    $("#buttonTwo").val() = Math.floor(Math.random() * 12) + 1;
-    $("#buttonThree").val() = Math.floor(Math.random() * 12) + 1;
-    $("#buttonFour").val() = Math.floor(Math.random() * 12) + 1;
+// create 4 random values and assign to crystal buttons
+for (var i=0; i < 4; i++){
+      currentValue = Math.floor(Math.random() * 12) + 1;
+      randomValues.push(currentValue);
+  // avoid duplicates being assigned to buttons
+        // if (randomValues.indexOf(currentValue) < 0){
+            // randomValues.push(currentValue);
+        // }
+    }
+// assign random values to each button
+    $("#buttonOne").val(randomValues[0]);
+    $("#buttonTwo").val(randomValues[1]);
+    $("#buttonThree").val(randomValues[2]); 
+    $("#buttonFour").val(randomValues[3]);
 };
 // Push value when buttonOne is clicked
 $("#buttonOne").on("click", function(){
-currentGuess += $("#buttonOne").val();
-$("#currentScore").text(currentGuess);
+    buttonOneNumber = parseInt($(this).val());
+    console.log(buttonOneNumber);
+    currentGuess += buttonOneNumber;
+    $("#currentScore").text(currentGuess);
 });
 // Push value when buttonTwo is clicked
 $("#buttonTwo").on("click", function(){
-
+    buttonTwoNumber = parseInt($(this).val());
+    console.log(buttonTwoNumber);
+    currentGuess += buttonTwoNumber;
+    $("#currentScore").text(currentGuess);
+});
+// push value when buttonThree is clicked
+$("#buttonThree").on("click", function(){
+    buttonThreeNumber = parseInt($(this).val());
+    console.log(buttonThreeNumber);
+    currentGuess += buttonThreeNumber;
+    $("#currentScore").text(currentGuess);
+});
+// push value when buttonFour is clicked
+$("#buttonFour").on("click", function(){
+    buttonFourNumber = parseInt($(this).val());
+    console.log(buttonFourNumber);
+    currentGuess += buttonFourNumber;
+    $("#currentScore").text(currentGuess);
 });
 // Reset Game Button
 $("#reset").on("click", function(){
