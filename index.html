@@ -82,7 +82,7 @@ function initializeGame(){
     wins=0;
     losses=0;
 // clear out HTML
-$("#randomNumber, #currentScore, #winTotals, #losseTotals").empty();
+$("#randomNumber, #currentScore, #winTotals, #lossTotals").empty();
 // generate random number to reach
     targetNumber = Math.floor(Math.random() * 120) + 19;
 // write random number to div
@@ -143,13 +143,23 @@ $("#reset").on("click", function(){
     function checkWin () {if (currentGuess > targetNumber){
     losses++;
     $("#lossTotals").text(losses);
+    newRound();
     }
     else if (currentGuess === targetNumber) {
         wins++;
         $("#winTotals").text(wins);
+        newRound();
     }};
-//new round, reset targetNumber, button values, retain wins/losses
- 
+//new round, reset targetNumber,currentGuess, button values, retain wins/losses
+    function newRound(){
+        currentGuess = 0;
+        $("#randomNumber, #currentScore").empty();
+        targetNumber = Math.floor(Math.random() * 120) + 19;
+        $("#randomNumber").text(targetNumber);
+        for (var i=0; i < 4; i++){
+        currentValue = Math.floor(Math.random() * 12) + 1;
+        randomValues.push(currentValue);}
+        };
 
 // Start Game
 initializeGame();   
