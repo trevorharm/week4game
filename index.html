@@ -30,10 +30,10 @@
                 <div class="text-center col-lg-3"><h3>Current Total</h3></div>
                 <div class="text-center col-lg-3"><h3>Wins</h3></div>
                 <div classs="text-center col-lg-3"><h3>Losses</h3></div>
-                <h1 id="randomNumber" class="col-lg-3"></h1>
-                <h1 id="currentScore" class="col-lg-3"></h1>
-                <h1 id="winTotals" class="col-lg-3"></h1>
-                <h1 id="lossTotals" class="col-lg-3"></h1>
+                <h1 id="randomNumber" class="col-lg-3 text-center"></h1>
+                <h1 id="currentScore" class="col-lg-3 text-center"></h1>
+                <h1 id="winTotals" class="col-lg-3 text-center"></h1>
+                <h1 id="lossTotals" class="col-lg-3 text-center"></h1>
             </div>
         </div>
     </div>
@@ -73,29 +73,30 @@ var buttonThreeNumber;
 var buttonFourNumber;
 var wins;
 var losses;
+var randomValues = [];
+
 
 function initializeGame(){
 // Zero out all variables
     currentGuess=0;
-    var randomValues = [];
     var currentValue;
     wins=0;
     losses=0;
 // clear out HTML
 $("#randomNumber, #currentScore, #winTotals, #lossTotals").empty();
 // generate random number to reach
-    targetNumber = Math.floor(Math.random() * 120) + 19;
+targetNumber = Math.floor(Math.random() * 120) + 19;
 // write random number to div
-    $("#randomNumber").text(targetNumber);
+$("#randomNumber").text(targetNumber);
 // create 4 random values and assign to crystal buttons
 for (var i=0; i < 4; i++){
       currentValue = Math.floor(Math.random() * 12) + 1;
-      randomValues.push(currentValue);
-  // avoid duplicates being assigned to buttons
-        // if (randomValues.indexOf(currentValue) < 0){
-            // randomValues.push(currentValue);
-        // }
-    }
+    //   randomValues.push(currentValue);
+// avoid duplicates being assigned to buttons
+      if (randomValues.indexOf(currentValue) < 0){
+          randomValues.push(currentValue);
+        }
+    };
 // assign random values to each button
     $("#buttonOne").val(randomValues[0]);
     $("#buttonTwo").val(randomValues[1]);
@@ -153,12 +154,17 @@ $("#reset").on("click", function(){
 //new round, reset targetNumber,currentGuess, button values, retain wins/losses
     function newRound(){
         currentGuess = 0;
+        randomValues=[];
         $("#randomNumber, #currentScore").empty();
         targetNumber = Math.floor(Math.random() * 120) + 19;
         $("#randomNumber").text(targetNumber);
         for (var i=0; i < 4; i++){
-        currentValue = Math.floor(Math.random() * 12) + 1;
-        randomValues.push(currentValue);}
+        newValue = Math.floor(Math.random() * 12) + 1;
+        randomValues.push(newValue)}
+        $("#buttonOne").val(randomValues[0]);
+        $("#buttonTwo").val(randomValues[1]);
+        $("#buttonThree").val(randomValues[2]); 
+        $("#buttonFour").val(randomValues[3]);
         };
 
 // Start Game
