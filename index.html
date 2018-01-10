@@ -78,14 +78,13 @@ function initializeGame(){
 // Zero out all variables
     currentGuess=0;
     var randomValues = [];
+    var currentValue;
     wins=0;
     losses=0;
-    var currentValue;
-
 // clear out HTML
-$("#randomNumber, #currentScore, #wins, #losses").empty();
+$("#randomNumber, #currentScore, #winTotals, #losseTotals").empty();
 // generate random number to reach
-    var targetNumber = Math.floor(Math.random() * 120) + 19;
+    targetNumber = Math.floor(Math.random() * 120) + 19;
 // write random number to div
     $("#randomNumber").text(targetNumber);
 // create 4 random values and assign to crystal buttons
@@ -109,6 +108,7 @@ $("#buttonOne").on("click", function(){
     console.log(buttonOneNumber);
     currentGuess += buttonOneNumber;
     $("#currentScore").text(currentGuess);
+    checkWin();
 });
 // Push value when buttonTwo is clicked
 $("#buttonTwo").on("click", function(){
@@ -116,6 +116,7 @@ $("#buttonTwo").on("click", function(){
     console.log(buttonTwoNumber);
     currentGuess += buttonTwoNumber;
     $("#currentScore").text(currentGuess);
+    checkWin();
 });
 // push value when buttonThree is clicked
 $("#buttonThree").on("click", function(){
@@ -123,6 +124,7 @@ $("#buttonThree").on("click", function(){
     console.log(buttonThreeNumber);
     currentGuess += buttonThreeNumber;
     $("#currentScore").text(currentGuess);
+    checkWin();
 });
 // push value when buttonFour is clicked
 $("#buttonFour").on("click", function(){
@@ -130,23 +132,26 @@ $("#buttonFour").on("click", function(){
     console.log(buttonFourNumber);
     currentGuess += buttonFourNumber;
     $("#currentScore").text(currentGuess);
+    checkWin();
 });
 // Reset Game Button
 $("#reset").on("click", function(){
     initializeGame();
 });
-// Compare to see if user won 
-// function checkWin(){
-//     if (currentGuess) > (targetNumber)
+// if win, push to win, else loss
 
-//     $("#lossTotals").text(losses)
-// }
-// else {
-//     (currentGuess) = (targetNumber)
-// }
+    function checkWin () {if (currentGuess > targetNumber){
+    losses++;
+    $("#lossTotals").text(losses);
+    }
+    else if (currentGuess === targetNumber) {
+        wins++;
+        $("#winTotals").text(wins);
+    }};
+//new round, reset targetNumber, button values, retain wins/losses
+ 
 
-// };
-// Call initialize Game
+// Start Game
 initializeGame();   
 });
 
