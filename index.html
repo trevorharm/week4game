@@ -141,7 +141,7 @@ $("#reset").on("click", function(){
 });
 // if win, push to win, else loss
 
-    function checkWin () {if (currentGuess > targetNumber){
+    function checkWin(){if (currentGuess > targetNumber){
     losses++;
     $("#lossTotals").text(losses);
     newRound();
